@@ -69,6 +69,9 @@ func (m *MultiBarPlotter)Plot(c draw.Canvas, plt *plot.Plot){
 	trX , trY := plt.Transforms(&c)
 
 	for _,bar := range m.Bars {
+		if len(bar.Y) <= 0{
+			continue
+		}
 		for i,y := range bar.Y{
 			var ymin float64
 			if i == 0{
@@ -78,6 +81,11 @@ func (m *MultiBarPlotter)Plot(c draw.Canvas, plt *plot.Plot){
 			}
 			//left X cord of bar on canvas
 			catMin := trX(bar.X)-m.Width/2
+
+			//check for possible draw
+			if !c.ContainsX(catMin) {
+				continue
+			}
 			//right X cord of bar on canvas
 			catMax := catMin + m.Width
 			

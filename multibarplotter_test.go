@@ -53,7 +53,7 @@ func TestMultiBarPlotter(t *testing.T){
 }
 
 func getRandomData(n int)Bars{
-	newBars := make(Bars,n)
+	newBars := make(Bars,n+3)
 	for i := 0 ; i < n ; i++{
 		newBars[i].Ymin = 0.0
 		newBars[i].X = float64(rand.Intn(30))
